@@ -10,7 +10,7 @@ type Idea @entity {
   timestamp: BigInt
   createdAtBlockNumber: BigInt
   createdAtTimestamp: BigInt
-  trades: [Trade!]!
+  trades: [Trade!]
 }
 
 type Stat @entity {

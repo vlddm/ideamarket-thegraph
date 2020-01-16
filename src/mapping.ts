@@ -22,6 +22,7 @@ export function handleIdeaTokenCreated(event: IdeaTokenCreated): void {
   idea.save()
 }
 
+
 export function handleIdeaTokenBought(event: IdeaTokenBought): void {
   let idea = Idea.load(event.params.publicationAddress.toHexString())
   idea.cost = getTokenCost(event.params.publicationAddress)
@@ -31,11 +32,23 @@ export function handleIdeaTokenBought(event: IdeaTokenBought): void {
   
   idea.timestamp = event.params.timestamp
   let trade_id = event.transaction.hash.toHexString()
-  idea.trades.push(trade_id)
+  let trades = idea.trades
+  trades.push(trade_id)
+  idea.trades = trades
   idea.save()
   
-  let trade = new Trade(event.transaction.hash.toHexString())
-  //['domain', 'seller', 'buyer', 'price', 'cost', 'marketCapBefore', 'marketCap', 'timestamp'].map(x=>trade[x]=idea[x])
+  let trade = new Trade(trade_id)
+
+  trade.domain = idea.domain
+  
+  trade.seller = idea.seller
+  trade.buyer = idea.buyer
+  trade.price = idea.price
+  trade.cost = idea.cost
+  trade.marketCapBefore = idea.marketCapBefore
+  trade.marketCap = idea.marketCap
+  trade.timestamp = idea.timestamp
+
   trade.save()
 
   let stat = new Stat('0')
@@ -53,11 +66,23 @@ export function handleIdeaTokenSold(event: IdeaTokenSold): void {
   
   idea.timestamp = event.params.timestamp
   let trade_id = event.transaction.hash.toHexString()
-  idea.trades.push(trade_id)
+  let trades = idea.trades
+  trades.push(trade_id)
+  idea.trades = trades
   idea.save()
   
   let trade = new Trade(trade_id)
-  //['domain', 'seller', 'buyer', 'price', 'cost', 'marketCapBefore', 'marketCap', 'timestamp'].map(x=>trade[x]=idea[x])
+
+  trade.domain = idea.domain
+  
+  trade.seller = idea.seller
+  trade.buyer = idea.buyer
+  trade.price = idea.price
+  trade.cost = idea.cost
+  trade.marketCapBefore = idea.marketCapBefore
+  trade.marketCap = idea.marketCap
+  trade.timestamp = idea.timestamp
+
   trade.save()
 
   let stat = new Stat('0')
