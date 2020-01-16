@@ -15,6 +15,7 @@ export function handleIdeaTokenCreated(event: IdeaTokenCreated): void {
 
   // Entity fields can be set based on event parameters
   idea.domain = domain
+  idea.trades = []
   idea.createdAtBlockNumber = event.params.blockNumber
   idea.createdAtTimestamp = event.block.timestamp
 
@@ -32,8 +33,10 @@ export function handleIdeaTokenBought(event: IdeaTokenBought): void {
   
   idea.timestamp = event.params.timestamp
   let trade_id = event.transaction.hash.toHexString()
+
   let trades = idea.trades
   trades.push(trade_id)
+  log.info('trades: ' + trades.join(' '), [])
   idea.trades = trades
   idea.save()
   
@@ -69,8 +72,9 @@ export function handleIdeaTokenSold(event: IdeaTokenSold): void {
   let trades = idea.trades
   trades.push(trade_id)
   idea.trades = trades
+
+  log.info('trades: ' + trades.join(' '),[])
   idea.save()
-  
   let trade = new Trade(trade_id)
 
   trade.domain = idea.domain

@@ -204,21 +204,13 @@ export class Idea extends Entity {
     }
   }
 
-  get trades(): Array<string> | null {
+  get trades(): Array<string> {
     let value = this.get("trades");
-    if (value === null) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
+    return value.toStringArray();
   }
 
-  set trades(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("trades");
-    } else {
-      this.set("trades", Value.fromStringArray(value as Array<string>));
-    }
+  set trades(value: Array<string>) {
+    this.set("trades", Value.fromStringArray(value));
   }
 }
 
