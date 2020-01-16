@@ -1,0 +1,258 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "marketCap",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "", "type": "uint256" }],
+    "name": "tokenContractAddresses",
+    "outputs": [{ "name": "", "type": "address" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "name": "_dai_contract_address", "type": "address" },
+      { "name": "_rDai_contract_address", "type": "address" },
+      { "name": "_devFund", "type": "address" },
+      { "name": "_minCashOutCoolDown", "type": "uint256" },
+      { "name": "_additionalNonOwnerCashOutCoolDown", "type": "uint256" },
+      { "name": "_payoutCapThresholdNum", "type": "uint256" },
+      { "name": "_payoutCapThresholdDenom", "type": "uint256" },
+      { "name": "_globalPayoutDust", "type": "uint256" }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "domain", "type": "string" },
+      { "indexed": false, "name": "newContractAddress", "type": "address" },
+      { "indexed": false, "name": "blockNumber", "type": "uint256" }
+    ],
+    "name": "IdeaTokenCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "domain", "type": "string" },
+      { "indexed": false, "name": "publicationAddress", "type": "address" },
+      { "indexed": true, "name": "buyer", "type": "address" },
+      { "indexed": false, "name": "cost", "type": "uint256" },
+      { "indexed": false, "name": "marketCapBefore", "type": "uint256" },
+      { "indexed": false, "name": "marketCapAfter", "type": "uint256" },
+      { "indexed": false, "name": "totalMarketCap", "type": "uint256" },
+      { "indexed": false, "name": "timestamp", "type": "uint256" }
+    ],
+    "name": "IdeaTokenBought",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "name": "domain", "type": "string" },
+      { "indexed": false, "name": "publicationAddress", "type": "address" },
+      { "indexed": true, "name": "seller", "type": "address" },
+      { "indexed": false, "name": "price", "type": "uint256" },
+      { "indexed": false, "name": "marketCapBefore", "type": "uint256" },
+      { "indexed": false, "name": "marketCapAfter", "type": "uint256" },
+      { "indexed": false, "name": "totalMarketCap", "type": "uint256" },
+      { "indexed": false, "name": "timestamp", "type": "uint256" }
+    ],
+    "name": "IdeaTokenSold",
+    "type": "event"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "str", "type": "string" }],
+    "name": "domainStringCheck",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "_domainStr", "type": "string" }],
+    "name": "getPublicationContractAddress",
+    "outputs": [{ "name": "", "type": "address" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "_domainStr", "type": "string" }],
+    "name": "domainStrToId",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_domainStr", "type": "string" }],
+    "name": "createIdeaToken",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "_domainStr", "type": "string" }],
+    "name": "getPublicationTokenSupply",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      { "name": "_domainStr", "type": "string" },
+      { "name": "_checkAddress", "type": "address" }
+    ],
+    "name": "getTokenAccountBalance",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      { "name": "_domainStr", "type": "string" },
+      { "name": "_qty", "type": "uint256" }
+    ],
+    "name": "getCostOfIdeaToken",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      { "name": "_domainStr", "type": "string" },
+      { "name": "_qty", "type": "uint256" }
+    ],
+    "name": "getPriceOfIdeaTokens",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_domainStr", "type": "string" },
+      { "name": "_qty", "type": "uint256" }
+    ],
+    "name": "buyIdeaToken",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_domainStr", "type": "string" },
+      { "name": "_qty", "type": "uint256" }
+    ],
+    "name": "sellIdeaToken",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getTokenCount",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "daiBalance",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "rDaiBalance",
+    "outputs": [{ "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_payoutCapThresholdNum", "type": "uint256" },
+      { "name": "_payoutCapThresholdDenom", "type": "uint256" }
+    ],
+    "name": "setPayoutCapThreshold",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_minCashOutCoolDown", "type": "uint256" },
+      { "name": "_additionalNonOwnerCashOutCoolDown", "type": "uint256" }
+    ],
+    "name": "setCoolDown",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_globalPayoutDust", "type": "uint256" }],
+    "name": "setGlobalPayoutDust",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "distributeInterest",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getPublications",
+    "outputs": [{ "name": "", "type": "address[]" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

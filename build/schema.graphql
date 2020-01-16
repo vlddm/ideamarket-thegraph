@@ -1,0 +1,19 @@
+type Idea @entity {
+  id: ID!
+  domain: String! # string
+  seller: Bytes
+  buyer: Bytes
+  price: BigInt
+  cost: BigInt
+  marketCapBefore: BigDecimal
+  marketCap: BigDecimal
+  timestamp: BigInt
+  createdAtBlockNumber: BigInt
+  createdAtTimestamp: BigInt
+}
+
+type Stat @entity {
+  id: ID!
+  totalMarketCap: BigDecimal
+  timestamp: BigInt
+}

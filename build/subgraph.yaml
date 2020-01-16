@@ -1,0 +1,34 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: mainnet
+    source:
+      address: "0x353a6b0E56732244A55716DDDd21Ec5fFD9A9896"
+      abi: IdeaTokenFactory
+      startBlock: 9211496
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - IdeaTokenCreated
+        - IdeaTokenBought
+        - IdeaTokenSold
+      abis:
+        - name: IdeaTokenFactory
+          file: Contract/abis/IdeaTokenFactory.json
+        - name: IdeaToken
+          file: Contract/abis/IdeaToken.json
+      eventHandlers:
+        - event: IdeaTokenCreated(indexed string,address,uint256)
+          handler: handleIdeaTokenCreated
+        - event: IdeaTokenBought(indexed string,address,indexed
+            address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleIdeaTokenBought
+        - event: IdeaTokenSold(indexed string,address,indexed
+            address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleIdeaTokenSold
+      file: Contract/Contract.wasm
